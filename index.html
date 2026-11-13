@@ -1,0 +1,941 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sachit | Web Developer</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    background: #0b0d12;
+    color: #f4f6fb;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+:root {
+    --green: #a6f36b;
+    --muted: #9ba5b5;
+    --panel: #151a24;
+    --border: rgba(255,255,255,0.1);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* NAVBAR */
+
+header {
+    position: sticky;
+    top: 0;
+    background: rgba(11,13,18,0.95);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+}
+
+nav {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: var(--green);
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--muted);
+    transition: 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--green);
+}
+
+.menu-btn {
+    display: none;
+    background: none;
+    border: 1px solid var(--border);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* COMMON */
+
+section {
+    padding: 100px 0;
+}
+
+.tag {
+    color: var(--green);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: clamp(45px, 7vw, 75px);
+    line-height: 1.1;
+}
+
+h2 {
+    font-size: clamp(32px, 5vw, 48px);
+    line-height: 1.2;
+}
+
+.green {
+    color: var(--green);
+}
+
+.muted {
+    color: var(--muted);
+}
+
+/* BUTTONS */
+
+.btn {
+    display: inline-block;
+    padding: 13px 25px;
+    border-radius: 30px;
+    font-weight: bold;
+    margin: 8px 8px 0 0;
+    transition: 0.3s;
+    border: 1px solid var(--border);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+.primary {
+    background: var(--green);
+    color: #10150d;
+    border-color: var(--green);
+}
+
+.secondary {
+    color: white;
+}
+
+/* HOME */
+
+#home {
+    min-height: 650px;
+    display: flex;
+    align-items: center;
+}
+
+.hero {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.hero p {
+    color: var(--muted);
+    font-size: 18px;
+    margin: 25px 0;
+    max-width: 600px;
+}
+
+.profile {
+    height: 350px;
+    border: 1px dashed #657080;
+    background: var(--panel);
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--muted);
+    padding: 20px;
+}
+
+.profile strong {
+    display: block;
+    color: white;
+    font-size: 20px;
+}
+
+/* ABOUT */
+
+#about {
+    background: #10141c;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    margin-top: 40px;
+}
+
+.about-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.about-card h3 {
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.about-text p {
+    color: var(--muted);
+    margin-bottom: 18px;
+}
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.skill {
+    background: #202735;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+/* WORKS */
+
+#works {
+    background: #0b0d12;
+}
+
+.section-heading {
+    margin-bottom: 40px;
+}
+
+.section-heading p {
+    color: var(--muted);
+    margin-top: 15px;
+}
+
+.projects {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.project {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.project:hover {
+    transform: translateY(-5px);
+    border-color: var(--green);
+}
+
+.project-image {
+    height: 260px;
+    background: #202735;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+.project-image.has-image img {
+    display: block;
+}
+
+.placeholder {
+    color: var(--muted);
+    text-align: center;
+}
+
+.placeholder span {
+    display: block;
+    font-size: 45px;
+    color: var(--green);
+}
+
+.project-image.has-image .placeholder {
+    display: none;
+}
+
+.project-info {
+    padding: 25px;
+}
+
+.project-info h3 {
+    font-size: 23px;
+}
+
+.project-info p {
+    color: var(--muted);
+    margin: 10px 0;
+}
+
+.upload {
+    display: inline-block;
+    color: var(--green);
+    border: 1px solid var(--green);
+    border-radius: 20px;
+    padding: 7px 14px;
+    cursor: pointer;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+.upload:hover {
+    background: var(--green);
+    color: #10150d;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+/* CONTACT */
+
+#contact {
+    background: #10141c;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+}
+
+.contact-details {
+    margin-top: 30px;
+}
+
+.contact-details p {
+    color: var(--muted);
+    margin-bottom: 15px;
+}
+
+.contact-form {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0 18px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: #0b0d12;
+    color: white;
+    outline: none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--green);
+}
+
+.contact-form textarea {
+    height: 130px;
+    resize: vertical;
+}
+
+.contact-form button {
+    cursor: pointer;
+    border: none;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 30px 0;
+    text-align: center;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+}
+
+.socials {
+    margin-top: 12px;
+}
+
+.socials a {
+    margin: 0 10px;
+}
+
+.socials a:hover {
+    color: var(--green);
+}
+
+/* ANIMATIONS */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: 0.7s;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* MOBILE */
+
+@media(max-width: 768px) {
+    .menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 75px;
+        left: 0;
+        width: 100%;
+        background: #10141c;
+        flex-direction: column;
+        padding: 25px;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .hero,
+    .about-grid,
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .projects {
+        grid-template-columns: 1fr;
+    }
+
+    section {
+        padding: 75px 0;
+    }
+
+    #home {
+        padding-top: 70px;
+    }
+
+    .profile {
+        height: 260px;
+    }
+}
+
+@media(prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; }
+    * { transition: none !important; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<header>
+    <nav class="container">
+        <a href="#home" class="logo">Sachit<span>.</span></a>
+
+        <button class="menu-btn" id="menuBtn">☰ Menu</button>
+
+        <div class="nav-links" id="navLinks">
+            <a href="#home" class="active">Home</a>
+            <a href="#about">About</a>
+            <a href="#works">Works</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+</header>
+
+<!-- HOME -->
+
+<section id="home">
+    <div class="container hero">
+
+        <div class="reveal">
+            <div class="tag">Web Developer | IT Student</div>
+
+            <h1>
+                Building digital
+                experiences that
+                <span class="green">matter.</span>
+            </h1>
+
+            <p>
+                Hey, I'm Sachit. I'm a passionate web developer
+                who loves building modern, responsive and
+                creative websites. I turn ideas into digital
+                experiences.
+            </p>
+
+            <a href="#works" class="btn primary">
+                Explore My Work ↗
+            </a>
+
+            <a href="#contact" class="btn secondary">
+                Contact Me
+            </a>
+        </div>
+
+        <div class="profile reveal">
+            <div>
+                <span style="font-size:45px">＋</span>
+                <strong>Add Your Photo Here</strong>
+                <small>Replace this area with your profile picture.</small>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+    <div class="container">
+
+        <div class="tag">Get to know me</div>
+        <h2>About <span class="green">Me.</span></h2>
+
+        <div class="about-grid">
+
+            <div class="about-card reveal">
+                <div class="green" style="font-size:55px;font-weight:bold">
+                    01.
+                </div>
+
+                <h3>Creative Developer</h3>
+
+                <p class="muted">
+                    I enjoy creating websites that combine
+                    beautiful design with useful functionality.
+                    Every project is an opportunity to learn
+                    something new.
+                </p>
+            </div>
+
+            <div class="about-text reveal">
+
+                <p>
+                    I'm Sachit, an IT student and aspiring
+                    web developer from Nepal. I have a passion
+                    for technology, design and building
+                    things for the web.
+                </p>
+
+                <p>
+                    My goal is to create digital experiences
+                    that help people and businesses grow.
+                    I enjoy solving problems, learning new
+                    technologies and working on creative ideas.
+                </p>
+
+                <p>
+                    I'm always looking for opportunities
+                    to improve my skills and collaborate
+                    on exciting projects.
+                </p>
+
+                <h3 style="margin-top:25px">My Skills</h3>
+
+                <div class="skills">
+                    <span class="skill">HTML</span>
+                    <span class="skill">CSS</span>
+                    <span class="skill">JavaScript</span>
+                    <span class="skill">React</span>
+                    <span class="skill">Tailwind CSS</span>
+                    <span class="skill">Git</span>
+                    <span class="skill">GitHub</span>
+                    <span class="skill">Responsive Design</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WORKS -->
+
+<section id="works">
+    <div class="container">
+
+        <div class="section-heading reveal">
+            <div class="tag">My Portfolio</div>
+            <h2>Featured <span class="green">Works.</span></h2>
+            <p>
+                Here are some projects I've worked on.
+                More exciting things coming soon!
+            </p>
+        </div>
+
+        <div class="projects">
+
+            <!-- PROJECT 1 -->
+
+            <div class="project reveal">
+                <div class="project-image" id="box1">
+                    <img id="preview1" alt="Project 1">
+                    <div class="placeholder">
+                        <span>＋</span>
+                        Upload Project Image
+                    </div>
+                </div>
+
+                <div class="project-info">
+                    <h3>Project One</h3>
+                    <p>
+                        Add your project description here.
+                        Explain what you built and which
+                        technologies you used.
+                    </p>
+
+                    <label class="upload" for="file1">
+                        + Upload Photo
+                    </label>
+
+                    <input type="file" id="file1"
+                    accept="image/*"
+                    onchange="previewImage(event,1)">
+                </div>
+            </div>
+
+            <!-- PROJECT 2 -->
+
+            <div class="project reveal">
+                <div class="project-image" id="box2">
+                    <img id="preview2" alt="Project 2">
+                    <div class="placeholder">
+                        <span>＋</span>
+                        Upload Project Image
+                    </div>
+                </div>
+
+                <div class="project-info">
+                    <h3>Project Two</h3>
+                    <p>
+                        Add your project description here.
+                        Explain what you built and which
+                        technologies you used.
+                    </p>
+
+                    <label class="upload" for="file2">
+                        + Upload Photo
+                    </label>
+
+                    <input type="file" id="file2"
+                    accept="image/*"
+                    onchange="previewImage(event,2)">
+                </div>
+            </div>
+
+            <!-- PROJECT 3 -->
+
+            <div class="project reveal">
+                <div class="project-image" id="box3">
+                    <img id="preview3" alt="Project 3">
+                    <div class="placeholder">
+                        <span>＋</span>
+                        Upload Project Image
+                    </div>
+                </div>
+
+                <div class="project-info">
+                    <h3>Project Three</h3>
+                    <p>
+                        Add your project description here.
+                        Explain what you built and which
+                        technologies you used.
+                    </p>
+
+                    <label class="upload" for="file3">
+                        + Upload Photo
+                    </label>
+
+                    <input type="file" id="file3"
+                    accept="image/*"
+                    onchange="previewImage(event,3)">
+                </div>
+            </div>
+
+            <!-- PROJECT 4 -->
+
+            <div class="project reveal">
+                <div class="project-image" id="box4">
+                    <img id="preview4" alt="Project 4">
+                    <div class="placeholder">
+                        <span>＋</span>
+                        Upload Project Image
+                    </div>
+                </div>
+
+                <div class="project-info">
+                    <h3>Project Four</h3>
+                    <p>
+                        Add your project description here.
+                        Explain what you built and which
+                        technologies you used.
+                    </p>
+
+                    <label class="upload" for="file4">
+                        + Upload Photo
+                    </label>
+
+                    <input type="file" id="file4"
+                    accept="image/*"
+                    onchange="previewImage(event,4)">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+    <div class="container contact-grid">
+
+        <div class="reveal">
+            <div class="tag">Let's Connect</div>
+
+            <h2>
+                Have a project
+                in <span class="green">mind?</span>
+            </h2>
+
+            <p class="muted" style="margin-top:20px">
+                Have an idea or want to work together?
+                Feel free to contact me. I'd love to hear
+                from you!
+            </p>
+
+            <div class="contact-details">
+                <p>✉ Email: hello@example.com</p>
+                <p>📍 Location: Nepal</p>
+                <p>💻 Available for freelance work</p>
+            </div>
+        </div>
+
+        <form class="contact-form reveal" id="contactForm">
+
+            <label>Your Name</label>
+            <input type="text" id="name"
+            placeholder="Enter your name" required>
+
+            <label>Your Email</label>
+            <input type="email" id="email"
+            placeholder="Enter your email" required>
+
+            <label>Your Message</label>
+            <textarea id="message"
+            placeholder="Tell me about your project..."
+            required></textarea>
+
+            <button type="submit" class="btn primary">
+                Send Message ↗
+            </button>
+
+        </form>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+    <div class="container">
+        <p>© <span id="year"></span> Sachit. All Rights Reserved.</p>
+
+        <div class="socials">
+            <a href="https://github.com/" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/" target="_blank">LinkedIn</a>
+            <a href="https://instagram.com/" target="_blank">Instagram</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+
+// MOBILE MENU
+
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", () => {
+    navLinks.classList.toggle("open");
+});
+
+navLinks.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+    });
+});
+
+// PROJECT IMAGE UPLOAD PREVIEW
+
+const imageUrls = {};
+
+function previewImage(event, number) {
+
+    const file = event.target.files[0];
+
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+        alert("Please select an image.");
+        return;
+    }
+
+    if (imageUrls[number]) {
+        URL.revokeObjectURL(imageUrls[number]);
+    }
+
+    imageUrls[number] = URL.createObjectURL(file);
+
+    const img = document.getElementById("preview" + number);
+
+    img.src = imageUrls[number];
+
+    document.getElementById("box" + number)
+    .classList.add("has-image");
+}
+
+// SCROLL ANIMATION
+
+const observer = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+        }
+
+    });
+
+}, { threshold: 0.1 });
+
+document.querySelectorAll(".reveal").forEach(el => {
+    observer.observe(el);
+});
+
+// ACTIVE NAVIGATION
+
+const sections = document.querySelectorAll("main section[id], body > section[id]");
+const links = document.querySelectorAll(".nav-links a");
+
+const sectionObserver = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+
+            links.forEach(link => {
+                link.classList.toggle(
+                    "active",
+                    link.getAttribute("href") === "#" + entry.target.id
+                );
+            });
+
+        }
+
+    });
+
+}, { rootMargin: "-35% 0px -55% 0px" });
+
+sections.forEach(section => sectionObserver.observe(section));
+
+// CONTACT FORM
+
+document.getElementById("contactForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    // CHANGE THIS TO YOUR REAL EMAIL ADDRESS
+    const myEmail = "hello@example.com";
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
+
+    const subject = encodeURIComponent(
+        "Portfolio enquiry from " + name
+    );
+
+    const body = encodeURIComponent(
+        "Name: " + name +
+        "\nEmail: " + email +
+        "\n\nMessage: " + message
+    );
+
+    window.location.href =
+        "mailto:" + myEmail +
+        "?subject=" + subject +
+        "&body=" + body;
+
+});
+
+// CURRENT YEAR
+
+document.getElementById("year").textContent =
+new Date().getFullYear();
+
+</script>
+
+</body>
+</html>
